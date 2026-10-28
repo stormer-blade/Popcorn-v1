@@ -9,20 +9,21 @@ def login():
     name = request.form.get("username")
     roll = request.form.get("roll")
     password = request.form.get("password")
-
+    h = None
     try:
         name.title()
 
         # Checking user in database 
         with open("Data.txt", "r") as file:
             data = file.read().split("\n")[1:-1]
+        h = data
         for i in range(len(data)):
             if f"{name.title()} {roll} {password}" == data[i]:
                 session["username"] = name.title()
                 return redirect("home")
     except:
         pass
-    return render_template("login.html")
+    return render_template("login.html", h=h)
 
 
 @app.route("/home", methods=["GET", "POST"])
