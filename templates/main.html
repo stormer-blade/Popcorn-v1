@@ -19,22 +19,17 @@
 
         <section class="chat">
             <div class="messages">
-                {% if you %}
-                    {% for i in lenght %}
-                        {% if i < you|length %}
-                                <div class="message user">
-                                    {{you[i][0][0]}} ->  {{you[i][0][-1]}}
-                                </div>
-                        {% else %}
-                            {% for chat in others %}
-                                <div class="message bot">
-                                    {{ chat[0][0] }} -> {{ chat[0][-1] }}
-                                </div>
-                            {% endfor %}
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-
+                {% for i in lenght %}
+                    {% if chats[i][0] == name %}
+                        <div class="message user">
+                            {{chats[i][0]}} →  {{chats[i][1]}}
+                        </div>
+                    {% else %}
+                        <div class="message bot">
+                            {{chats[i][0]}} → {{chats[i][1]}}
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
         </section>
 
