@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, session
 from datetime import datetime
+from pathlib import Path
 
 app = Flask(__name__)
 app.secret_key = "gsavdVsagdvdfgj"
@@ -15,7 +16,9 @@ def login():
         name.title()
 
         # Checking user in database 
-        with open("Data.txt", "r") as file:
+        data_file = Path(__file__).resolve().parent / "Data.txt"
+
+        with open(data_file, "r") as file:
             data = file.read().split("\n")[1:-1]
         for i in range(len(data)):
             if f"{name.title()} {roll} {password}" == data[i]:
